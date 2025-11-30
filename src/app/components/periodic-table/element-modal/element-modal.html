@@ -1,0 +1,31 @@
+@let $element = element();
+<div class="element-modal-backdrop" (click)="closeModal()" (keydown.enter)="markAsCorrect()">
+<div class="element-modal" (click)="$event.stopPropagation()">
+  @if (wasCorrect()) {
+  <div class="element-header" [ngStyle]="{'background-color': '#' + $element['cpk-hex']}">
+    <div class="element-number">{{ $element.number }}</div>
+    <div class="element-symbol">{{ $element.symbol }}</div>
+    <div class="element-name">{{ $element.name }}</div>
+    <div class="element-mass">{{ $element.atomic_mass }}</div>
+  </div>
+  <div class="element-details">
+    <div><strong>Category:</strong> {{ $element.category }}</div>
+    <div><strong>Phase:</strong> {{ $element.phase }}</div>
+    <div><strong>Density:</strong> {{ $element.density }} g/cm³</div>
+    <div><strong>Melting Point:</strong> {{ $element.melt }} K</div>
+    <div><strong>Boiling Point:</strong> {{ $element.boil }} K</div>
+    <div><strong>Electronegativity:</strong> {{ $element.electronegativity_pauling }}</div>
+    <div><strong>Discovered by:</strong> {{ $element.discovered_by }}</div>
+
+  </div>
+
+  } @else {
+
+    <label>Name: </label>
+    <input autofocus type="text" [field]="answerForm.name"/>
+
+    <button (click)="markAsCorrect()">Click to Reveal Element</button>
+  }
+
+</div>
+</div>

@@ -1,0 +1,44 @@
+.element-tile {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  transition: transform 0.2s;
+  width: 6rem;
+  height: 8rem;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .element-symbol {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  .element-name {
+    font-size: 0.5em;
+    margin-top: 8px;
+    color: #000000;
+  }
+
+  .element-number {
+    font-size: 0.5em;
+    color: #000000;
+    margin-top: 4px;
+  }
+
+  .element-mass {
+    font-size: 0.5em;
+    color: #000000;
+    margin-top: 4px;
+  }
+}
+

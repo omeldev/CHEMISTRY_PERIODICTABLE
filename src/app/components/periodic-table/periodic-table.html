@@ -1,0 +1,17 @@
+<div class="periodic-table">
+
+  @for ($element of periodicTable.elements; track $element.number) {
+    <app-element-tile
+      [correct]="correctElements.has($element)"
+      (selectElement)="openModal($element)"
+      [element]="$element"
+      [style.grid-column]="$element.xpos"
+      [style.grid-row]="$element.ypos"
+    ></app-element-tile>
+
+  }
+  @if (selectedElement) {
+    <app-element-modal [wasCorrect]="correctElements.has(selectedElement)" (correctAnswered)="markElementAsCorrect()" (close)="closeModal()" [element]="selectedElement"></app-element-modal>
+  }
+</div>
+

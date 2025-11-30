@@ -1,0 +1,15 @@
+@let $element = element();
+<div (click)="openModal()" class="element-tile" [ngStyle]="{'background-color': '#' + $element['cpk-hex']}">
+
+
+  @if(correct()) {
+  <!-- <div class="element-number">{{ $element.number }}</div> -->
+    <div class="element-symbol">{{ $element.symbol }}</div>
+    <div class="element-name">{{ $element.name }}</div>
+  <div class="element-mass">{{ $element.atomic_mass }}</div>
+  } @else {
+
+    <div class="element-number">{{ $element.number }}</div>
+    <div class="element-symbol">{{ $element.symbol }}</div>
+  }
+</div>
