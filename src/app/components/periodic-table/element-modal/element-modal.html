@@ -1,5 +1,6 @@
 @let $element = element();
-<div class="element-modal-backdrop" (click)="closeModal()" (keydown.enter)="markAsCorrect()">
+
+<div class="element-modal-backdrop" (click)="closeModal()">
 <div class="element-modal" (click)="$event.stopPropagation()">
   @if (wasCorrect()) {
   <div class="element-header" [ngStyle]="{'background-color': '#' + $element['cpk-hex']}">
@@ -20,11 +21,15 @@
   </div>
 
   } @else {
-
+    <div class="element-header" [ngStyle]="{'background-color': '#' + $element['cpk-hex']}">
+    <div class="element-symbol">{{ $element.symbol }}</div>
+    </div>
     <label>Name: </label>
-    <input autofocus type="text" [field]="answerForm.name"/>
+    <input #answerInput type="text" [field]="answerForm.name"/>
 
-    <button (click)="markAsCorrect()">Click to Reveal Element</button>
+    <div class="element-modal-button-container">
+    <button class="element-modal-button" (click)="markAsCorrect()">Click to Reveal Element</button>
+    </div>
   }
 
 </div>

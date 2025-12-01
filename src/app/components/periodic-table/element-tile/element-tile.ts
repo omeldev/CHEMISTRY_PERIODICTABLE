@@ -21,4 +21,7 @@ export class ElementTile {
     this.selectElement.emit();
     console.log("SELECTED", this.element());
   }
+
+  protected readonly Math = Math;
+  protected readonly Number = Number;
 }

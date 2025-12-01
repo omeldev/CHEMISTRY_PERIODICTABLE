@@ -1,20 +1,36 @@
 .element-tile {
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 16px;
+  padding: 6px;
   background-color: #f9f9f9;
   transition: transform 0.2s;
-  width: 6rem;
-  height: 8rem;
+  width: 4.5rem;
+  height: 4.5rem;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  justify-content: center;
+
+  .element-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .element-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.4);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    .element-mass {
+      visibility: initial;
+    }
   }
 
   .element-symbol {
@@ -25,7 +41,7 @@
 
   .element-name {
     font-size: 0.5em;
-    margin-top: 8px;
+    margin-top: 2px;
     color: #000000;
   }
 
@@ -39,6 +55,7 @@
     font-size: 0.5em;
     color: #000000;
     margin-top: 4px;
+    visibility: hidden;
   }
 }
 

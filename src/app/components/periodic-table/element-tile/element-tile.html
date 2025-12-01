@@ -3,13 +3,20 @@
 
 
   @if(correct()) {
-  <!-- <div class="element-number">{{ $element.number }}</div> -->
+    <div class="element-header">
+      <div class="element-number">{{ $element.number }}</div>
+      <div class="element-mass">{{ Math.round($element.atomic_mass * 100) / 100 }}</div>
+    </div>
+
+    <div class="element-info">
     <div class="element-symbol">{{ $element.symbol }}</div>
     <div class="element-name">{{ $element.name }}</div>
-  <div class="element-mass">{{ $element.atomic_mass }}</div>
+    </div>
   } @else {
+    <div class="element-info">
+      <div class="element-symbol">{{ $element.symbol }}</div>
 
-    <div class="element-number">{{ $element.number }}</div>
-    <div class="element-symbol">{{ $element.symbol }}</div>
+    </div>
   }
+
 </div>

@@ -1,14 +1,39 @@
+
+.game-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background-color: #222;
+  color: white;
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .stat-label{
+
+    }
+    .stat-value {
+
+    }
+  }
+}
+
 .periodic-table {
 
   display: grid;
   grid-template-columns: repeat(18, 1fr);
   gap: 5px;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 
   box-sizing: border-box;
 
-  margin: 8px;
   background-color: purple;
 
+  overflow: hidden;
+
 }
+

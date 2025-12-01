@@ -1,4 +1,29 @@
+
+@let totalCorrect = totalCorrect$ | async;
+@let totalAttempts = totalAttempts$ | async;
+@let firstTryCorrect = firstTryCorrect$ | async;
+@let timePassed = timePassed$ | async;
+<div class="game-stats">
+  <div class="stat">
+    <div class="stat-label">Time passed</div>
+    <div class="stat-value">{{ timePassed }}</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Total Correct</div>
+    <div class="stat-value">{{ totalCorrect }}</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Total Attempts</div>
+    <div class="stat-value">{{ totalAttempts }}</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">First Try Correct</div>
+    <div class="stat-value">{{ firstTryCorrect }}</div>
+  </div>
+</div>
 <div class="periodic-table">
+
+
 
   @for ($element of periodicTable.elements; track $element.number) {
     <app-element-tile
