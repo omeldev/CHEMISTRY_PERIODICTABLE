@@ -30,8 +30,8 @@ export const DEFAULT_SETTINGS: Settings = {
   atomicNumberHintEnabled: false,
   massHintEnabled: false,
 
-  symbolAnswerEnabled: true,
-  nameAnswerEnabled: false,
+  symbolAnswerEnabled: false,
+  nameAnswerEnabled: true,
   atomicNumberAnswerEnabled: false,
   massAnswerEnabled: false,
   periodAnswerEnabled: false,
