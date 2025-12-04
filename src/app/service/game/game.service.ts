@@ -20,8 +20,8 @@ export class GameService {
   private readonly totalCorrectElementsSubject: BehaviorSubject<number> = new BehaviorSubject(0);
   public readonly totalCorrectElements$ = this.totalCorrectElementsSubject.asObservable();
 
-  private readonly elementAttemtsSubject: BehaviorSubject<Map<PeriodicElement, number>> = new BehaviorSubject(new Map<PeriodicElement, number>());
-  public readonly elementAttempts$ = this.elementAttemtsSubject.asObservable();
+  private readonly elementAttemptsSubject: BehaviorSubject<Map<PeriodicElement, number>> = new BehaviorSubject(new Map<PeriodicElement, number>());
+  public readonly elementAttempts$ = this.elementAttemptsSubject.asObservable();
 
   public readonly totalAttempts$;
 
@@ -32,7 +32,7 @@ export class GameService {
 
 
   public async recordAttempt(element: PeriodicElement, correct: boolean) {
-    const elementAttempts = await firstValueFrom(this.elementAttemtsSubject);
+    const elementAttempts = await firstValueFrom(this.elementAttemptsSubject);
     const currentAttempts = elementAttempts.get(element) || 0;
     if(correct) {
 
@@ -42,7 +42,7 @@ export class GameService {
       }
     }
     elementAttempts.set(element, currentAttempts + 1);
-    this.elementAttemtsSubject.next(elementAttempts);
+    this.elementAttemptsSubject.next(elementAttempts);
 
     if (correct) {
       const totalCorrect = await firstValueFrom(this.totalCorrectElements$);

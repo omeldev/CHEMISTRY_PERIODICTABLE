@@ -20,9 +20,14 @@
     <div class="stat-label">First Try Correct</div>
     <div class="stat-value">{{ firstTryCorrect }}</div>
   </div>
+  <div class="stat">
+
+
+    <button class="settings-button" (click)="openSettingsModal()">Open Settings</button>
+
+  </div>
 </div>
 <div class="periodic-table">
-
 
 
   @for ($element of periodicTable.elements; track $element.number) {
@@ -35,8 +40,14 @@
     ></app-element-tile>
 
   }
+
+
   @if (selectedElement) {
     <app-element-modal [wasCorrect]="correctElements.has(selectedElement)" (correctAnswered)="markElementAsCorrect()" (close)="closeModal()" [element]="selectedElement"></app-element-modal>
+  }
+
+  @if (isSettingsModalVisible) {
+    <app-settings-modal (close)="closeSettingsModal()" ></app-settings-modal>
   }
 </div>
 

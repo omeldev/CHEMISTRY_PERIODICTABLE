@@ -55,8 +55,10 @@ export interface SimpleElement {
   group: number | "unknown";
 }
 
+export const ORIGINAL_PERIODIC_TABLE: PeriodicTable = structuredClone(periodicTableData);
 
-export const periodicTable: PeriodicTable = periodicTableData;
+export const periodicTable: PeriodicTable = structuredClone(periodicTableData);
+
 
 export const simpleElements: SimpleElement[] = periodicTable.elements.map(el => ({
   name: el.name,

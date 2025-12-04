@@ -5,13 +5,16 @@ import {ElementModal} from './element-modal/element-modal';
 import {GameService} from '../../service/game/game.service';
 import {AsyncPipe} from '@angular/common';
 import {BehaviorSubject, map} from 'rxjs';
+import {SettingsModal} from '../settings-modal/settings-modal';
+import {SettingService} from '../../service/setting/setting.service';
 
 @Component({
   selector: 'app-periodic-table',
   imports: [
     ElementTile,
     ElementModal,
-    AsyncPipe
+    AsyncPipe,
+    SettingsModal
 
   ],
   templateUrl: './periodic-table.html',
@@ -30,7 +33,9 @@ export class PeriodicTable {
   public timePassedSubject = new BehaviorSubject(0);
   public timePassed$ = this.timePassedSubject.asObservable();
 
-  constructor(private readonly gameService: GameService) {
+
+  constructor(private readonly gameService: GameService,
+              private readonly settingService: SettingService) {
     this.totalAttempts$ = this.gameService.totalAttempts$;
     this.firstTryCorrect$ = this.gameService.firstTryCorrectElements$;
     this.totalCorrect$ = this.gameService.totalCorrectElements$;
@@ -49,6 +54,8 @@ export class PeriodicTable {
         this.timePassedSubject.next(seconds);
       });
     }, 50);
+
+
   }
 
 
@@ -68,6 +75,19 @@ export class PeriodicTable {
     this.selectedElement = element;
     console.log("OPEN MODAL", element);
   }
+
+
+  public isSettingsModalVisible = false;
+
+
+  public openSettingsModal(): void {
+    this.isSettingsModalVisible = true;
+  }
+
+  public closeSettingsModal(): void {
+    this.isSettingsModalVisible = false;
+  }
+
 
 
 }

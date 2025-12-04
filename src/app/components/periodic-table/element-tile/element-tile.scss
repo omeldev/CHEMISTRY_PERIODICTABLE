@@ -1,61 +1,64 @@
-.element-tile {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 6px;
-  background-color: #f9f9f9;
-  transition: transform 0.2s;
-  width: 4.5rem;
-  height: 4.5rem;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-
-  .element-info {
+:host {
+  .element-tile {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 6px;
+    background-color: #555;
+    transition: transform 0.2s;
+    width: 4.5rem;
+    height: 4.5rem;
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 
-  .element-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  &:hover {
-    transform: scale(1.4);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    .element-mass {
-      visibility: initial;
+    .element-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-  }
 
-  .element-symbol {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #000000;
-  }
+    .element-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  .element-name {
-    font-size: 0.5em;
-    margin-top: 2px;
-    color: #000000;
-  }
+    &:hover {
+      transform: scale(1.4);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
 
-  .element-number {
-    font-size: 0.5em;
-    color: #000000;
-    margin-top: 4px;
-  }
+      .element-mass {
+        visibility: initial;
+      }
+    }
 
-  .element-mass {
-    font-size: 0.5em;
-    color: #000000;
-    margin-top: 4px;
-    visibility: hidden;
+    .element-symbol {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    .element-name {
+      font-size: 0.5em;
+      margin-top: 2px;
+      color: #000000;
+    }
+
+    .element-number {
+      font-size: 0.5em;
+      color: #000000;
+      margin-top: 4px;
+    }
+
+    .element-mass {
+      font-size: 0.5em;
+      color: #000000;
+      margin-top: 4px;
+      visibility: hidden;
+    }
   }
 }
 

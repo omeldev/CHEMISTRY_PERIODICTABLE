@@ -1,5 +1,7 @@
 @let $element = element();
-<div (click)="openModal()" class="element-tile" [ngStyle]="{'background-color': '#' + $element['cpk-hex']}">
+@let settings = settings$ | async;
+
+<div (click)="openModal()" class="element-tile" [ngStyle]="settings?.colorsEnabled || correct() ? {'background-color': '#' + $element['cpk-hex']} : {}">
 
 
   @if(correct()) {
@@ -13,8 +15,27 @@
     <div class="element-name">{{ $element.name }}</div>
     </div>
   } @else {
+
+    <div class="element-header">
+      @if(settings?.atomicNumberHintEnabled) {
+      <div class="element-number">{{ $element.number }}</div>
+      }
+
+      @if(settings?.massHintEnabled) {
+      <div class="element-mass">{{ Math.round($element.atomic_mass * 100) / 100 }}</div>
+      }
+    </div>
+
+
     <div class="element-info">
+
+      @if(settings?.symbolHintEnabled) {
       <div class="element-symbol">{{ $element.symbol }}</div>
+      }
+
+      @if(settings?.nameHintEnabled) {
+      <div class="element-name">{{ $element.name }}</div>
+      }
 
     </div>
   }

@@ -1,4 +1,6 @@
 @let $element = element();
+@let settings = settings$ | async;
+
 
 <div class="element-modal-backdrop" (click)="closeModal()">
 <div class="element-modal" (click)="$event.stopPropagation()">
@@ -17,15 +19,74 @@
     <div><strong>Boiling Point:</strong> {{ $element.boil }} K</div>
     <div><strong>Electronegativity:</strong> {{ $element.electronegativity_pauling }}</div>
     <div><strong>Discovered by:</strong> {{ $element.discovered_by }}</div>
-
   </div>
 
   } @else {
-    <div class="element-header" [ngStyle]="{'background-color': '#' + $element['cpk-hex']}">
-    <div class="element-symbol">{{ $element.symbol }}</div>
+    <div class="element-header" [ngStyle]="settings?.colorsEnabled ? {'background-color': '#' + $element['cpk-hex']} : {}">
+
+      @if (settings?.atomicNumberHintEnabled) {
+        <div class="element-number">{{ $element.number }}</div>
+      }
+
+      @if (settings?.symbolHintEnabled) {
+        <div class="element-symbol">{{ $element.symbol }}</div>
+      }
+
+      @if (settings?.nameHintEnabled) {
+        <div class="element-name">{{ $element.name }}</div>
+      }
+
+      @if (settings?.massHintEnabled) {
+        <div class="element-mass">{{ $element.atomic_mass }}</div>
+      }
     </div>
-    <label>Name: </label>
-    <input #answerInput type="text" [field]="answerForm.name"/>
+
+    <div class="element-answer-form">
+      @if (settings?.nameAnswerEnabled) {
+        <div class="answer-container">
+          <label class="answer-label">Name: </label>
+          <input class="answer-input" #answerInput type="text" [field]="answerForm.name" />
+        </div>
+      }
+
+      @if (settings?.symbolAnswerEnabled) {
+        <div class="answer-container">
+          <label class="answer-label">Symbol: </label>
+          <input class="answer-input" #answerInput type="text" [field]="answerForm.symbol" />
+        </div>
+      }
+
+      @if (settings?.atomicNumberAnswerEnabled) {
+        <div class="answer-container">
+          <label class="answer-label">Atomic Number: </label>
+          <input class="answer-input" #answerInput type="number" [field]="answerForm.atomicNumber" />
+        </div>
+      }
+
+      @if (settings?.massAnswerEnabled) {
+        <div class="answer-container">
+          <label class="answer-label">Atomic Mass: </label>
+          <input class="answer-input" #answerInput type="number" step="0.01" [field]="answerForm.mass" />
+        </div>
+      }
+
+      @if (settings?.groupAnswerEnabled) {
+        <div class="answer-container">
+          <label class="answer-label">Group: </label>
+          <input class="answer-input" #answerInput type="number" [field]="answerForm.group" />
+        </div>
+      }
+
+      @if (settings?.periodAnswerEnabled) {
+        <div class="answer-container">
+          <label class="answer-label">Period: </label>
+          <input class="answer-input" #answerInput type="number" [field]="answerForm.period" />
+        </div>
+      }
+
+
+
+    </div>
 
     <div class="element-modal-button-container">
     <button class="element-modal-button" (click)="markAsCorrect()">Click to Reveal Element</button>

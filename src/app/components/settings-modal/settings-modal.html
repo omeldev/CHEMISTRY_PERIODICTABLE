@@ -1,0 +1,67 @@
+<div class="settings-modal-backdrop" (click)="closeModal()">
+  <div class="settings-modal" (click)="$event.stopPropagation()">
+    <h2>Settings</h2>
+    <div class="settings-container">
+
+      <div class="settings-option">
+        <label class="settings-label">Enable Colors:</label>
+        <input class="settings-input" [field]="settingsForm.settings.colorsEnabled" type="checkbox" />
+      </div>
+
+      <div class="settings-option">
+        <label class="settings-label">Enable Symbol Hint: </label>
+        <input class="settings-input" [field]="settingsForm.settings.symbolHintEnabled" type="checkbox" />
+      </div>
+
+      <div class="settings-option">
+        <label class="settings-label">Enable Name Hint: </label>
+        <input class="settings-input" [field]="settingsForm.settings.nameHintEnabled" type="checkbox" />
+      </div>
+
+      <div class="settings-option">
+        <label class="settings-label">Enable Atomic Number Hint: </label>
+        <input class="settings-input" [field]="settingsForm.settings.atomicNumberHintEnabled" type="checkbox" />
+      </div>
+
+      <div class="settings-option">
+        <label class="settings-label">Enable Atomic Mass Hint: </label>
+        <input class="settings-input" [field]="settingsForm.settings.massHintEnabled" type="checkbox" />
+      </div>
+
+        <div class="settings-option">
+          <label class="settings-label">Enable Symbol Answer:</label>
+          <input class="settings-input" [field]="settingsForm.settings.symbolAnswerEnabled" type="checkbox" />
+        </div>
+        <div class="settings-option">
+          <label class="settings-label">Enable Name Answer:</label>
+          <input class="settings-input" [field]="settingsForm.settings.nameAnswerEnabled" type="checkbox" />
+        </div>
+        <div class="settings-option">
+          <label class="settings-label">Enable Atomic Number Answer:</label>
+          <input class="settings-input" [field]="settingsForm.settings.atomicNumberAnswerEnabled" type="checkbox" />
+        </div>
+        <div class="settings-option">
+          <label class="settings-label">Enable Atomic Mass Answer:</label>
+          <input class="settings-input" [field]="settingsForm.settings.massAnswerEnabled" type="checkbox" />
+        </div>
+        <div class="settings-option">
+          <label class="settings-label">Enable Group Answer:</label>
+          <input class="settings-input" [field]="settingsForm.settings.groupAnswerEnabled" type="checkbox" />
+        </div>
+        <div class="settings-option">
+          <label class="settings-label">Enable Period Answer:</label>
+          <input class="settings-input" [field]="settingsForm.settings.periodAnswerEnabled" type="checkbox" />
+        </div>
+
+
+      <div class="settings-option-button-container">
+        <button (click)="shuffleElements()" class="settings-action-button">Shuffle Elements</button>
+      </div>
+
+      <div class="settings-option-button-container">
+        <button (click)="resetElements()" class="settings-action-button">Reset Shuffled Elements</button>
+      </div>
+    <button class="settings-modal-save-button" (click)="saveSettings()">Save Settings</button>
+    </div>
+  </div>
+</div>

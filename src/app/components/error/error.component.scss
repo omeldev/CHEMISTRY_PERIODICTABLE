@@ -1,26 +1,28 @@
 @use 'styles';
 
-.error-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.error-message {
-  font-size: 6rem;
-  font-weight: bold;
-  animation: blinkred 1s infinite;
-}
-
-@keyframes blinkred {
-  0% {
-    color: red;
+:host {
+  .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
-  50% {
-    color: white;
+
+  .error-message {
+    font-size: 6rem;
+    font-weight: bold;
+    animation: blinkred 1s infinite;
   }
-  100% {
-    color: red;
+
+  @keyframes blinkred {
+    0% {
+      color: red;
+    }
+    50% {
+      color: white;
+    }
+    100% {
+      color: red;
+    }
   }
 }

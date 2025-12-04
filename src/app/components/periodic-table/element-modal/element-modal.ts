@@ -16,15 +16,17 @@ import {AsyncPipe, NgStyle} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {form, Field} from '@angular/forms/signals';
 import {GameService} from '../../../service/game/game.service';
+import {Settings, SettingService} from '../../../service/setting/setting.service';
+import {firstValueFrom, Observable} from 'rxjs';
 
 
 interface AnswerData {
   name: string;
   symbol: string;
-  atomicNumber: number | null;
-  mass: number | null;
-  period: number | null;
-  group: number | null;
+  atomicNumber: number;
+  mass: number;
+  period: number;
+  group: number;
 }
 
 @Component({
@@ -33,6 +35,7 @@ interface AnswerData {
     NgStyle,
     FormsModule,
     Field,
+    AsyncPipe,
   ],
   templateUrl: './element-modal.html',
   styleUrl: './element-modal.scss',
@@ -50,16 +53,19 @@ export class ElementModal implements AfterViewInit, OnDestroy  {
   public answerModel = signal<AnswerData>({
     name: '',
     symbol: '',
-    atomicNumber: null,
-    mass: null,
-    period: null,
-    group: null
+    atomicNumber: 0,
+    mass: 0,
+    period: 0,
+    group: 0
   });
 
   public answerForm = form(this.answerModel);
 
-  constructor(private readonly gameService: GameService) {
+  public settings$: Observable<Settings>;
 
+  constructor(private readonly gameService: GameService,
+              private readonly settingsService: SettingService) {
+    this.settings$ = this.settingsService.getSettings$();
   }
   public closeModal(): void {
     this.close.emit();
@@ -73,13 +79,22 @@ export class ElementModal implements AfterViewInit, OnDestroy  {
       this.closeModal();
       return;
     }
-    const correct = this.answerForm.name().value().toLowerCase() == this.element().name.toLowerCase();
-    /**  if(this.symbolAnswer().toLowerCase() !== this.element().symbol.toLowerCase()) return;
-     if(this.atomicNumberAnswer() !== this.element().number) return;
-     if(this.massAnswer() !== Math.round(this.element().atomic_mass)) return;
-     if(this.periodAnswer() !== this.element().period) return;
-     if(this.groupAnswer() !== this.element().group) return;
-     **/
+
+    const settings = await firstValueFrom(this.settings$);
+
+
+    const correct = (!settings.nameAnswerEnabled ||
+        this.answerForm.name().value().toLowerCase() === this.element().name.toLowerCase()) &&
+      (!settings.symbolAnswerEnabled ||
+        this.answerForm.symbol().value().toLowerCase() === this.element().symbol.toLowerCase()) &&
+      (!settings.atomicNumberAnswerEnabled ||
+        this.answerForm.atomicNumber().value() === this.element().number) &&
+      (!settings.massAnswerEnabled ||
+        this.answerForm.mass().value() === Math.floor(this.element().atomic_mass)) &&
+      (!settings.periodAnswerEnabled||
+        this.answerForm.period().value() === this.element().period) &&
+      (!settings.groupAnswerEnabled ||
+        this.answerForm.group().value() === this.element().group);
 
     await this.gameService.recordAttempt(this.element(), correct);
 
