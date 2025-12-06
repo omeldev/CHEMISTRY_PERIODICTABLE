@@ -102,10 +102,7 @@ export class ElementModal implements AfterViewInit, OnDestroy  {
       this.correctAnswered.emit();
     }
 
-
   }
-
-
 
   private elementEffect?: EffectRef = effect(() => {
     this.element(); // track changes
@@ -116,7 +113,6 @@ export class ElementModal implements AfterViewInit, OnDestroy  {
   ngAfterViewInit(): void {
     // Focus when modal first appears
     this.focusInput();
-
     this.isModalVisible = true;
   }
 
@@ -132,12 +128,12 @@ export class ElementModal implements AfterViewInit, OnDestroy  {
   }
 
   @HostListener('document:keydown.enter', ['$event'])
-  onDocumentEnter(event: Event) {
+  async onDocumentEnter(event: Event) {
     if(!this.isModalVisible) return;
     const keyboardEvent = event as KeyboardEvent;
     keyboardEvent.preventDefault();                // prevent form submit / default
     keyboardEvent.stopPropagation();
-    this.markAsCorrect();
+    await this.markAsCorrect();
   }
 
 }
