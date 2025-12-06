@@ -2,12 +2,10 @@ import {
   AfterViewInit,
   Component, effect, EffectRef,
   ElementRef,
-  EventEmitter, HostListener,
+  HostListener,
   input,
-  Input,
   InputSignal, OnDestroy,
   output,
-  Output,
   signal,
   ViewChild
 } from '@angular/core';
